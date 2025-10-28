@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="card">
+    <h2>Generate speech</h2>
+    <form method="post" class="form" data-show-progress data-progress-message="Generating audio…">
+        <label for="text">Text</label>
+        <textarea id="text" name="text" rows="4" required placeholder="Enter text to synthesize..."></textarea>
+
+        <label for="voice">Voice</label>
+        <select id="voice" name="voice">
+            {% for value, label in voice_options %}
+                <option value="{{ value }}" {% if value == selected_voice %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="generate-button">
+            <span class="button-label">Generate audio</span>
+            <span class="button-spinner" aria-hidden="true"></span>
+        </button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Recent audio</h2>
+    {% if history %}
+        <ul class="history-list">
+            {% for entry in history %}
+                <li class="history-item">
+                    <div class="history-meta">
+                        <span class="timestamp">{{ entry.created_at }}</span>
+                        <span class="voice">{{ entry.voice }}</span>
+                    </div>
+                    <p class="history-text">{{ entry.text }}</p>
+                    <audio controls preload="none">
+                        <source src="{{ url_for('media', filename=entry.filename) }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="history-actions">
+                        <a class="link" href="{{ url_for('media', filename=entry.filename, download=1) }}">Download</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No audio generated yet. Submit some text above to get started.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "users": {
+    "demo@example.com": {
+      "password_hash": "scrypt:32768:8:1$sO9BuToVtoJVLFEo$09dc607b9c776a77a1db99efdfed2beba3f07600452e94037a34e20fa37c21a8f73f91c826c917a474667ffc93d878b15059446fc7ea3bc3ad7882dcbb65cd37",
+      "display_name": "Demo User"
+    },
+    "hehuan.ca@hotmail.com": {
+      "password_hash": "scrypt:32768:8:1$WwFVFFZiWJUC5Fnw$246dfaedcb4a4b68b86c0d58c68395627717053d815d0829630f871533071e817153d4f3f5feeba67705924186827766d24715a0b31e53cdfc8f3134551d9d75",
+      "display_name": "Huan"
+    }
+  }
+}
