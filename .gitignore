@@ -1,0 +1,42 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Model files (large files)
+*.pth
+*.bin
+*.onnx
+*.h5
+*.pkl
+
+# Audio files (generated content)
+audio/
+*.wav
+*.mp3
+*.flac
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
