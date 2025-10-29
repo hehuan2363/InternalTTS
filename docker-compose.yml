@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  internal-tts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: internal-tts:latest
+    container_name: internal-tts-app
+    ports:
+      - "5000:5000"
+    environment:
+      - TTS_APP_SECRET=${TTS_APP_SECRET:-change-me}
+      - PORT=5000
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+      - ./audio:/app/audio
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - internal-tts-network
+
+networks:
+  internal-tts-network:
+    driver: bridge
